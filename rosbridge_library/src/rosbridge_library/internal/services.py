@@ -70,6 +70,7 @@ class ServiceCaller(Thread):
         self.error = error_callback
 
     def run(self):
+        print("is this the one calling the service?")
         try:
             # Call the service and pass the result to the success handler
             self.success(call_service(self.service, self.args))
@@ -100,8 +101,11 @@ def call_service(service, args=None):
 
     service = resolve_name(service)
 
+    print("HELLO")
+
     service_type = get_service_type(str(service))
     if service_type is None:
+        print("There is an error now!")
         raise InvalidServiceException(service)
     service_class = get_service_class(service_type)
     inst = get_service_request_instance(service_type)

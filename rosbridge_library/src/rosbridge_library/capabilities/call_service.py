@@ -53,6 +53,7 @@ class CallService(Capability):
         protocol.register_operation("call_service", self.call_service)
 
     def call_service(self, message):
+        print("someone asked me to call this service")
         # Pull out the ID
         cid = message.get("id", None)
 

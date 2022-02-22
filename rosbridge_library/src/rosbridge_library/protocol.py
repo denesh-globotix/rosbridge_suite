@@ -378,6 +378,7 @@ class Protocol:
         capability_class -- the class of the capability to add
 
         """
+        print("trying to add da capability")
         self.capabilities.append(capability_class(self))
 
     def log(self, level, message, lid=None):

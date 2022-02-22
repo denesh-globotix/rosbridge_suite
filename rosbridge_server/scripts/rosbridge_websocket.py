@@ -66,6 +66,7 @@ def shutdown_hook():
 
 if __name__ == "__main__":
     rospy.init_node("rosbridge_websocket")
+    rospy.loginfo("These are the parameters for the websocket")
 
     ##################################################
     # Parameter handling                             #
@@ -107,6 +108,7 @@ if __name__ == "__main__":
         except ValueError:
             external_port = None
 
+    rospy.loginfo("Going to start the client manager")
     RosbridgeWebSocket.client_manager = ClientManager()
 
     # Get the glob strings and parse them as arrays.
@@ -308,6 +310,7 @@ if __name__ == "__main__":
     connected = False
     while not connected and not rospy.is_shutdown():
         try:
+            # This is where the actual ros websocket server is being started
             listenWS(factory, context_factory)
             rospy.loginfo('Rosbridge WebSocket server started at {}'.format(uri))
             connected = True

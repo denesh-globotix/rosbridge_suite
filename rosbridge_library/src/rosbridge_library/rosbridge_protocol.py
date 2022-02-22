@@ -59,4 +59,5 @@ class RosbridgeProtocol(Protocol):
         self.parameters = parameters
         Protocol.__init__(self, client_id)
         for capability_class in self.rosbridge_capabilities:
+            print(" --> ", str(capability_class))
             self.add_capability(capability_class)

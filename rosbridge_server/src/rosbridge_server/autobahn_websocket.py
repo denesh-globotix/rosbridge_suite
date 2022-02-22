@@ -52,6 +52,7 @@ from rosbridge_library.util import json, bson
 def _log_exception():
     """Log the most recent exception to ROS."""
     exc = traceback.format_exception(*sys.exc_info())
+    rospy.logwarn("GELLO")
     rospy.logerr(''.join(exc))
 
 
@@ -192,7 +193,7 @@ class RosbridgeWebSocket(WebSocketServerProtocol):
 
         except Exception as exc:
             rospy.logerr("Unable to accept incoming connection.  Reason: %s", str(exc))
-        rospy.loginfo("Client connected.  %d clients total.", cls.clients_connected)
+        rospy.loginfo("[autobahn_websocket]: Client connected.  %d clients total.", cls.clients_connected)
         if cls.authenticate:
             rospy.loginfo("Awaiting proper authentication...")
 
@@ -226,6 +227,7 @@ class RosbridgeWebSocket(WebSocketServerProtocol):
                 # proper error will be handled in the protocol class
                 self.incoming_queue.push(message)
         else:
+            print("IS THIS A MESSAGE?!")
             # no authentication required
             self.incoming_queue.push(message)
 
